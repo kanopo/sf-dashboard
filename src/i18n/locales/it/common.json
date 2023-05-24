@@ -1,0 +1,29 @@
+{
+  "API_ERROR": {},
+  "COOKIE": {
+    "ACCEPT_ALL": "Accetta tutti",
+    "ACCEPT_SELECTED": "Accetta selezionati",
+    "BANNER_TEXT": "Al fine di migliorare il funzionamento e la qualità di navigazione questo sito web utilizza cookie tecnici, analitici aggregati e di profilazione del comportamento dell'utente per finalità di marketing.<br/>Cliccando su \"Accetto\" ne sarà autorizzato l'uso, per selezionare, invece, quali accettare è possibile cliccare su \"Personalizza\". Per maggiori informazioni si rinvia alla <a href=\"/cookie-policy\">cookie policy</a>",
+    "CUSTOMIZE": "Personalizza",
+    "DECLINE": "Rifiuta",
+    "HIDE_DESCRIPTION": "Nascondi descrizione",
+    "NECESSARY_DESCRIPTION": "Questi cookie permettono il corretto funzionamento di alcune sezioni del Sito e sono indispensabili per consentire all'Utente di navigare sul Sito e utilizzarne le funzionalità.",
+    "NECESSARY_TITLE": "Cookie tecnici",
+    "PERFORMANCE_DESCRIPTION": "I cookie di questa categoria vengono utilizzati per raccogliere informazioni sull'utilizzo del Sito. Il Sito utilizza Google Analytics in modo anonimo al fine di migliorare il suo utilizzo e di adeguare i suoi contenuti alle preferenze dei suoi visitatori.",
+    "PERFORMANCE_TITLE": "Cookie di prestazione",
+    "PREFERENCES_DESCRIPTION": "Il seguente pannello ti consente di esprimere le tue preferenze di consenso alle tecnologie di tracciamento che adottiamo per offrire le funzionalità e svolgere le attività sotto descritte. Per ottenere ulteriori informazioni in merito all'utilità e al funzionamento di tali strumenti di tracciamento, consulta la <a href=\"/cookie\">cookie policy</a>. Puoi rivedere e modificare le tue scelte in qualsiasi momento dalla seguente pagina. Tieni presente che il rifiuto di un determinato cookie può rendere le relative funzioni non disponibili.",
+    "PREFERENCES_TITLE": "Preferenze cookie",
+    "SHOW_DESCRIPTION": "Mostra descrizione"
+  },
+  "META": {
+    "DESCRIPTION": "Template per progetti in Next.js",
+    "SITE_NAME": "SF Next Template",
+    "TITLE": "SF Next template",
+    "TWITTER_CREATOR": "@"
+  },
+  "TITLE": "SF Next template",
+  "ERROR": {
+    "GENERIC_ERROR": "Si è verificato un errore",
+    "RETRY_BUTTON": "Riprova"
+  }
+}

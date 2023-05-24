@@ -1,0 +1,6 @@
+.container {
+  @apply bg-black text-white;
+}
+.title {
+  @apply text-4xl;
+}

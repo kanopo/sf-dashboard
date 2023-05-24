@@ -1,0 +1,24 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_ENDPOINT}
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - VERSION=$(node -pe "require('./package.json')['version']")
+      - IMAGE_TAG=$VERSION_$COMMIT_HASH
+      - IMAGE_URI="${REPOSITORY_URI}:${IMAGE_TAG}"
+      - LATEST_IMAGE_URI="${REPOSITORY_URI}:latest"
+
+      - echo "NEXT_PUBLIC_LANG_COOKIE_MAX_AGE=$NEXT_PUBLIC_LANG_COOKIE_MAX_AGE" >> .env
+      - echo "NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL" >> .env
+  build:
+    commands:
+      - docker build -t "$IMAGE_URI" .
+      - docker tag "$IMAGE_URI" "$LATEST_IMAGE_URI"
+  post_build:
+    commands:
+      - docker push "$IMAGE_URI"
+      - docker push "$LATEST_IMAGE_URI"
+      - printf '[{"name":"%s","imageUri":"%s"}]' "$APP_NAME" "$IMAGE_URI" > images.json
+artifacts:
+  files: images.json

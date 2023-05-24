@@ -1,0 +1,15 @@
+.container {
+  @apply flex justify-center items-center gap-x-1 select-none;
+}
+
+.item {
+  @apply w-8 h-8 md:w-10 md:h-10 inline-flex justify-center items-center border rounded cursor-pointer;
+}
+
+.itemDisabled {
+  @apply cursor-default opacity-50;
+}
+
+.itemActive {
+  @apply bg-blue text-white cursor-default;
+}

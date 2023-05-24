@@ -1,0 +1,16 @@
+.button {
+  @apply px-6 h-10 bg-black
+    border border-black rounded
+     text-white whitespace-nowrap text-center
+    inline-flex justify-center items-center;
+}
+.full {
+  @apply w-full px-0;
+}
+
+.outline {
+  @apply bg-white text-black;
+}
+.disabled {
+  @apply opacity-50;
+}

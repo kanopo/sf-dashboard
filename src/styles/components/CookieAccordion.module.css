@@ -1,0 +1,66 @@
+.accordion {
+  @apply px-5 border-b border-b-gray-300;
+}
+.header {
+  @apply py-2 flex justify-between items-center;
+}
+.headerLeft {
+  @apply flex-1 mr-2.5 md:mr-5
+    flex flex-col md:flex-row
+    justify-between items-start md:items-center;
+}
+.title {
+  @apply text-base md:text-xl font-semibold cursor-pointer;
+}
+.titleDisabled {
+  @apply cursor-default;
+}
+.headerRight {
+  @apply ml-2.5 md:ml-0 flex items-center;
+}
+
+.descriptionToggle {
+  @apply mt-[5px] md:mt-0 flex items-center text-sm cursor-pointer;
+
+  svg {
+    @apply w-4 ml-1 transition-transform duration-300
+  }
+}
+.descriptionToggleOpen {
+  svg {
+    @apply rotate-180;
+  }
+}
+
+.check {
+  @apply w-[60px] min-w-[60px] h-8 bg-gray-300 rounded-full
+  relative cursor-pointer transition-colors duration-300;
+
+  &::before {
+    content: "";
+    @apply w-6 h-6 bg-white rounded-full
+      absolute top-1/2 left-1.5 -translate-y-1/2
+      transition-transform duration-300;
+  }
+}
+.checkChecked {
+  @apply bg-green-500;
+
+  &::before {
+    @apply translate-x-full
+  }
+}
+.checkDisabled {
+  @apply opacity-30 cursor-default;
+}
+
+.description {
+  @apply max-h-0 overflow-hidden;
+
+  > div {
+    @apply pb-5;
+  }
+}
+.descriptionOpen {
+  @apply max-h-[none];
+}

@@ -1,0 +1,22 @@
+.bg {
+  @apply w-full h-full
+    bg-gray-900 bg-opacity-60
+    fixed top-0 left-0 z-50;
+}
+.box {
+  @apply max-h-[calc(100%-20px)] bg-white p-5
+    flex flex-col
+    fixed right-5 bottom-5 left-5 z-50;
+}
+.content {
+  @apply mb-5 overflow-y-auto text-sm text-black;
+}
+.content a {
+  @apply underline;
+}
+.buttons {
+  @apply flex flex-col gap-2 md:gap-4 md:flex-row md:justify-end;
+}
+.button {
+  @apply w-full md:w-[180px];
+}

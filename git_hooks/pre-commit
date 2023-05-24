@@ -1,0 +1,3 @@
+#!/bin/sh
+npm run translations:sort
+git add public/locales
