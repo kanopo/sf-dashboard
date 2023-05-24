@@ -297,10 +297,6 @@ Resources:
               Value: !Ref ImageStoreBucket
             - Name: BUCKET_REGION
               Value: !Ref AWS::Region
-            - Name: GITHUB_CLIENT_ID
-              Value: !Sub "{{resolve:secretsmanager:dmitri-GITHUB-Oauth-secrets:SecretString:GITHUB_CLIENT_ID}}"
-            - Name: GITHUB_CLIENT_SECRET
-              Value: !Sub "{{resolve:secretsmanager:dmitri-GITHUB-Oauth-secrets:SecretString:GITHUB_CLIENT_SECRET}}"
 
           LogConfiguration:
             LogDriver: awslogs
