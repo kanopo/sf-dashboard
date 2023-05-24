@@ -27,9 +27,9 @@ phases:
       - echo "NEXT_PUBLIC_GTAG_ID=" >> $ENV_PATH
       - echo "NEXT_PUBLIC_GSI_ID=" >> $ENV_PATH
       - echo "NEXT_PUBLIC_LANG_COOKIE_MAX_AGE=" >> $ENV_PATH
-      - echo "NEXT_PUBLIC_SITE_URL=" >> $ENV_PATH
+      - echo "NEXT_PUBLIC_SITE_URL="${NEXT_URL} >> $ENV_PATH
       - echo "REVALIDATE_TOKEN=" >> $ENV_PATH
-      - echo "GITHUB_TOKEN=" >> $ENV_PATH
+      - echo "GITHUB_TOKEN="${GITHUB_TOKEN} >> $ENV_PATH
       - echo "AWS_REGION="${AWS_REGION} >> $ENV_PATH
 
       - echo Build started on `date`
