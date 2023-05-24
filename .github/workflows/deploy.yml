@@ -1,0 +1,33 @@
+name: Deploy CloudFormation Stack
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.ACCESS_KEY_SECRET }}
+          aws-region: eu-north-1
+
+      - name: Deploy VPC to AWS
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: dmitriVPC
+          template: cloudformation_templates/00_foundation_layer.yaml
+          no-fail-on-empty-changeset: "1"
+
+      - name: Deploy ECS to AWS
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: dmitriECS-${{ github.ref_name }}
+          template: cloudformation_templates/01_template_layer.yaml
+          no-fail-on-empty-changeset: "1"
+          parameter-overrides: >-
+            pBranchName=${{ github.ref_name }}
+          
