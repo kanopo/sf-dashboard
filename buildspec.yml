@@ -4,15 +4,16 @@ env:
     NEXT_URL: "dmitri-GITHUB-Oauth-secrets:NEXT_URL"
     GITHUB_TOKEN: "dmitri-GITHUB-Oauth-secrets:GITHUB_TOKEN"
     AWS_REGION: "dmitri-GITHUB-Oauth-secrets:AWS_REGION"
-    ECR: "dmitri-GITHUB-Oauth-secrets:ECR" # 861507897222.dkr.ecr.eu-north-1.amazonaws.com
-    APP: "dmitri-GITHUB-Oauth-secrets:APP" # dmitri-dashboard
-    ENV_PATH: "./.env"
-    APP_BASE_DIR_PATH: "./"
-    APP_NAME: "dmitri-task-definition-cf"
+    ECR: "dmitri-GITHUB-Oauth-secrets:ECR"
+    APP: "dmitri-GITHUB-Oauth-secrets:APP"
 
 phases:
   pre_build:
     commands:
+      - ENV_PATH="./.env"
+      - APP_BASE_DIR_PATH="./"
+      - APP_NAME="dmitri-task-definition-cf"
+
       - echo Logging in to Amazon ECR...
       - aws --version
       - aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR}
@@ -21,19 +22,19 @@ phases:
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
-      - echo "AUTH_USER=" >> ${ENV_PATH}
-      - echo "AUTH_PWD=" >> ${ENV_PATH}
-      - echo "NEXT_PUBLIC_GTAG_ID=" >> ${ENV_PATH}
-      - echo "NEXT_PUBLIC_GSI_ID=" >> ${ENV_PATH}
-      - echo "NEXT_PUBLIC_LANG_COOKIE_MAX_AGE=" >> ${ENV_PATH}
-      - echo "NEXT_PUBLIC_SITE_URL=" >> ${ENV_PATH}
-      - echo "REVALIDATE_TOKEN=" >> ${ENV_PATH}
-      - echo "GITHUB_TOKEN=" >> ${ENV_PATH}
-      - echo "AWS_REGION="${AWS_REGION} >> ${ENV_PATH}
+      - echo "AUTH_USER=" >> $ENV_PATH
+      - echo "AUTH_PWD=" >> $ENV_PATH
+      - echo "NEXT_PUBLIC_GTAG_ID=" >> $ENV_PATH
+      - echo "NEXT_PUBLIC_GSI_ID=" >> $ENV_PATH
+      - echo "NEXT_PUBLIC_LANG_COOKIE_MAX_AGE=" >> $ENV_PATH
+      - echo "NEXT_PUBLIC_SITE_URL=" >> $ENV_PATH
+      - echo "REVALIDATE_TOKEN=" >> $ENV_PATH
+      - echo "GITHUB_TOKEN=" >> $ENV_PATH
+      - echo "AWS_REGION="${AWS_REGION} >> $ENV_PATH
 
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest ${APP_BASE_DIR_PATH}
+      - docker build -t $REPOSITORY_URI:latest $APP_BASE_DIR_PATH
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
@@ -42,6 +43,6 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"$s","imageUri":"%s"}]' ${APP_NAME}, $REPOSITORY_URI:$IMAGE_TAG > image.json
+      - printf '[{"name":"$s","imageUri":"%s"}]' $APP_NAME, $REPOSITORY_URI:$IMAGE_TAG > image.json
 artifacts:
   files: image.json
