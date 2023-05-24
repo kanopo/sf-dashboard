@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nodemon --watch ./src/i18n/config.js --watch ./src/i18n/locales --watch ./public/assets/icons --watch ./public/assets/images --ext ts,tsx,js,svg,json,jpeg,png --exec 'npm run images:convert && npm run i18n:type && npm run icons:type && NODE_ENV=development next dev'",
-    "build": "npm run images:convert && npm run icons:type && npm run i18n:type && NODE_ENV=production next build",
+    "buildold": "npm run images:convert && npm run icons:type && npm run i18n:type && NODE_ENV=production next build",
+    "build": "next build",
     "start": "NODE_ENV=production next start",
     "lint": "next lint",
     "git-hooks:init": "sh ./scripts/git-hooks:init.sh",
