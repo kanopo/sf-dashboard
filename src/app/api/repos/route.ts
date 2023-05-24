@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic"
 //@ts-ignore
 import { Octokit } from '@octokit/rest';
 import { NextRequest } from 'next/server';
@@ -10,9 +10,7 @@ export async function GET(request: NextRequest) {
         auth: process.env.GITHUB_TOKEN,
     });
 
-    // check if the request has a id to get or is a get all request
     if (searchParams.has("repoName") && searchParams.has("repoOwner")) {
-        // TODO: get request by id
         console.log(searchParams.get("repoName"))
         console.log(searchParams.get("repoOwner"))
 
@@ -28,7 +26,6 @@ export async function GET(request: NextRequest) {
 
         return new Response(JSON.stringify(repoResponse.data))
     } else {
-        // TODO: get all requests
         const response = await octokit.repos.listForAuthenticatedUser({
             per_page: 100,
         });

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { FC, useEffect, useState } from 'react'
 
@@ -19,7 +19,9 @@ const page: FC<Props> = ({ params }) => {
         fetch("/api/repos?" + new URLSearchParams({
             repoOwner: params.repoOwner,
             repoName: params.repoName
-        }))
+        }), {
+            cache: "no-cache"
+        })
             .then(res => res.json())
             .then(data => setRepo(data))
 
