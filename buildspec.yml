@@ -3,25 +3,20 @@ env:
   secrets-manager:
     NEXT_URL: "dmitri-GITHUB-Oauth-secrets:NEXT_URL"
     GITHUB_TOKEN: "dmitri-GITHUB-Oauth-secrets:GITHUB_TOKEN"
-    AWS_REGION: "dmitri-GITHUB-Oauth-secrets:AWS_REGION"
-    ECR: "dmitri-GITHUB-Oauth-secrets:ECR"
-    APP: "dmitri-GITHUB-Oauth-secrets:APP"
 
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR}
-      - REPOSITORY_URI=${ECR}/${APP}
+      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 861507897222.dkr.ecr.eu-north-1.amazonaws.com
+      - REPOSITORY_URI=861507897222.dkr.ecr.eu-north-1.amazonaws.com/dmitri-dashboard
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
-      - echo "NEXTAUTH_SECRET="${NEXT_SECRET} >> .env
       - echo "NEXTAUTH_URL="${NEXT_URL} >> .env
       - echo "GITHUB_TOKEN="${GITHUB_TOKEN} >> .env
-      - echo "AWS_REGION="${AWS_REGION} >> .env
 
       - cat .env
 
