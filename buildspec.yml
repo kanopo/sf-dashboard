@@ -8,10 +8,6 @@ env:
 phases:
   pre_build:
     commands:
-      - ENV_PATH="./.env"
-      - APP_BASE_DIR_PATH="./"
-      - APP_NAME="dmitri-task-definition-cf"
-
       - echo Logging in to Amazon ECR...
       - aws --version
       - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 861507897222.dkr.ecr.eu-north-1.amazonaws.com
@@ -20,19 +16,19 @@ phases:
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
-      - echo "AUTH_USER=" >> $ENV_PATH
-      - echo "AUTH_PWD=" >> $ENV_PATH
-      - echo "NEXT_PUBLIC_GTAG_ID=" >> $ENV_PATH
-      - echo "NEXT_PUBLIC_GSI_ID=" >> $ENV_PATH
-      - echo "NEXT_PUBLIC_LANG_COOKIE_MAX_AGE=" >> $ENV_PATH
-      - echo "NEXT_PUBLIC_SITE_URL="${NEXT_URL} >> $ENV_PATH
-      - echo "REVALIDATE_TOKEN=" >> $ENV_PATH
-      - echo "GITHUB_TOKEN="${GITHUB_TOKEN} >> $ENV_PATH
-      - echo "AWS_REGION="${AWS_REGION} >> $ENV_PATH
+      - echo "AUTH_USER=" >> .env
+      - echo "AUTH_PWD=" >> .env
+      - echo "NEXT_PUBLIC_GTAG_ID=" >> .env
+      - echo "NEXT_PUBLIC_GSI_ID=" >> .env
+      - echo "NEXT_PUBLIC_LANG_COOKIE_MAX_AGE=" >> .env
+      - echo "NEXT_PUBLIC_SITE_URL="${NEXT_URL} >> .env
+      - echo "REVALIDATE_TOKEN=" >> .env
+      - echo "GITHUB_TOKEN="${GITHUB_TOKEN} >> .env
+      - echo "AWS_REGION="${AWS_REGION} >> .env
 
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest $APP_BASE_DIR_PATH
+      - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
