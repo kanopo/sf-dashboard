@@ -306,6 +306,15 @@ Resources:
               "awslogs-create-group": "true"
               "awslogs-stream-prefix": "dmitri"
 
+          HealthCheck:
+              Command: 
+                - "CMD-SHELL"
+                - "curl -f https://main.dashboard.dmitri.sandbox.soluzionifutura.it/it || exit 1"
+              Interval: 30
+              Retries: 5
+              StartPeriod: 30
+              Timeout: 5
+
   ECSService:
     Type: AWS::ECS::Service
     Properties:
