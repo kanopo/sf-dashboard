@@ -16,24 +16,33 @@ phases:
       - REPOSITORY_URI=861507897222.dkr.ecr.eu-north-1.amazonaws.com/dmitri-dashboard
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
+
   build:
     commands:
-      - echo "AUTH_USER=" >> .env
-      - echo "AUTH_PWD=" >> .env
-      - echo "NEXT_PUBLIC_GTAG_ID=" >> .env
-      - echo "NEXT_PUBLIC_GSI_ID=" >> .env
-      - echo "NEXT_PUBLIC_LANG_COOKIE_MAX_AGE=" >> .env
-      - echo "NEXT_PUBLIC_SITE_URL="${NEXT_URL} >> .env
-      - echo "REVALIDATE_TOKEN=" >> .env
-      - echo "GITHUB_TOKEN="${GITHUB_TOKEN} >> .env
-      - echo "AWS_REGION="${AWS_REGION} >> .env
+      # AUTH_USER=
+      # AUTH_PWD=
+      # NEXT_PUBLIC_GTAG_ID=
+      # NEXT_PUBLIC_GSI_ID=
+      # NEXT_PUBLIC_LANG_COOKIE_MAX_AGE=31536000
+      # NEXT_PUBLIC_SITE_URL=http://localhost:3000
+      # REVALIDATE_TOKEN=token
+      # GITHUB_TOKEN=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
+      - echo "AUTH_USER=" >> .env.local
+      - echo "AUTH_PWD=" >> .env.local
+      - echo "NEXT_PUBLIC_GTAG_ID=" >> .env.local
+      - echo "NEXT_PUBLIC_GSI_ID=" >> .env.local
+      - echo "NEXT_PUBLIC_LANG_COOKIE_MAX_AGE=31536000" >> .env.local
+      - echo "NEXT_PUBLIC_SITE_URL="${NEXT_URL} >> .env.local
+      - echo "REVALIDATE_TOKEN=token" >> .env.local
+      - echo "GITHUB_TOKEN="${GITHUB_TOKEN} >> .env.local
 
-      - cat .env
+      - cat .env.local
 
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+
   post_build:
     commands:
       - echo Build completed on `date`
