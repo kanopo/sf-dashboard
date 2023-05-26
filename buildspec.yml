@@ -15,7 +15,13 @@ phases:
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
-      - echo "NEXTAUTH_URL="${NEXT_URL} >> .env
+      - echo "AUTH_USER="
+      - echo "AUTH_PWD="
+      - echo "NEXT_PUBLIC_GTAG_ID="
+      - echo "NEXT_PUBLIC_GSI_ID="
+      - echo "NEXT_PUBLIC_LANG_COOKIE_MAX_AGE=31536000"
+      - echo "NEXT_PUBLIC_SITE_URL="${NEXT_URL} >> .env
+      - echo "REVALIDATE_TOKEN=token"
       - echo "GITHUB_TOKEN="${GITHUB_TOKEN} >> .env
 
       - cat .env
