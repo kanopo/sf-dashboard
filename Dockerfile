@@ -1,12 +1,13 @@
-FROM node:18.14.0
+# FROM node:18.14.0
+FROM --platform=linux/amd64 node:18.14.0-alpine AS build
 
-WORKDIR /dashboard
+WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm ci
 
-COPY . .
+COPY . ./
 
 EXPOSE 3000
 

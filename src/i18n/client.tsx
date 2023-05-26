@@ -40,7 +40,7 @@ export const I18nContextProvider: FC<PropsWithChildren<I18nProps>> = ({ children
   </I18nContext.Provider>
 }
 
-export const useI18n = <T,>(selector: (state: I18nState) => T): T => {
+export const useI18n = <T, >(selector: (state: I18nState) => T): T => {
   const store = useContext(I18nContext)
   if (!store) {
     throw new Error("Missing I18nContext.Provider in the tree")

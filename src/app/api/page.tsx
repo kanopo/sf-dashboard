@@ -6,7 +6,7 @@ import { generateI18nStaticParams } from "$i18n/helpers"
 
 export const generateStaticParams = generateI18nStaticParams("/")
 
-const Page: ServerPage = async () => {
+const Page: ServerPage = async() => {
   notFound()
 
   return null
