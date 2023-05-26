@@ -1,13 +1,12 @@
 "use client"
 
 import TLink from "$components/client/TLink"
-import Link from "next/link"
 import { FC, useEffect, useState } from "react"
 import { GitHubRepo } from "$types/githubOctokit"
-
+import Link from "next/link"
 
 interface Props {
-    lang: string
+  lang: string
 }
 const RepoList: FC<Props> = ({ lang }) => {
 
@@ -30,7 +29,6 @@ const RepoList: FC<Props> = ({ lang }) => {
       {repos && repos.map((repo: GitHubRepo) => (
         // <Link href={lang + '/repos/' + repo.owner + "/" + repo.name}>
         <Link key={repo.id} href={lang + "/repos/" + repo.full_name}>
-
           <div className="border-2 p-2 m-2">
             <p>{repo.full_name}</p>
             <p>{repo.name}</p>
