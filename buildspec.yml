@@ -4,6 +4,8 @@ env:
     NEXT_URL: "dmitri-GITHUB-Oauth-secrets:NEXT_URL"
     GITHUB_TOKEN: "dmitri-GITHUB-Oauth-secrets:GITHUB_TOKEN"
     AWS_REGION: "dmitri-GITHUB-Oauth-secrets:AWS_REGION"
+    ECR: "dmitri-GITHUB-Oauth-secrets:ECR"
+    APP: "dmitri-GITHUB-Oauth-secrets:APP"
 
 phases:
   pre_build:
@@ -25,6 +27,8 @@ phases:
       - echo "REVALIDATE_TOKEN=" >> .env
       - echo "GITHUB_TOKEN="${GITHUB_TOKEN} >> .env
       - echo "AWS_REGION="${AWS_REGION} >> .env
+
+      - cat .env
 
       - echo Build started on `date`
       - echo Building the Docker image...
