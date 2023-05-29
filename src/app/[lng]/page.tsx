@@ -13,8 +13,6 @@ interface Props {
 const Page: FC<Props> = ({ params: { lng } }) => {
   return (
     <div>
-      {/* <HomeHero />
-    <Image src={"example.jpeg"} alt={"hero"} lazy={false} /> */}
       <RepoList lang={lng} />
     </div>
   )

@@ -1,13 +1,15 @@
 export const dynamic = "force-dynamic"
-// @ts-ignore
 import { Octokit } from "@octokit/rest"
 import { NextRequest } from "next/server"
 
 // TODO: API endpoint to get all repos
 export async function GET(request: NextRequest): Promise<Response> {
+
+  const GITHUB_TOKEN = process.env.GITHUB_TOKEN
+
   const searchParams = request.nextUrl.searchParams
   const octokit = new Octokit({
-    auth: process.env.GITHUB_TOKEN
+    auth: GITHUB_TOKEN
   })
 
   if (searchParams.has("repoName") && searchParams.has("repoOwner")) {
